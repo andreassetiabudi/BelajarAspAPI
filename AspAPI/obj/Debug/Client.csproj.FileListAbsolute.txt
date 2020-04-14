@@ -175,6 +175,8 @@ C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\API.dll
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\EntityFramework.dll
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\EntityFramework.SqlServer.dll
+C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\EPPlus.dll
+C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\itextsharp.dll
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -207,6 +209,8 @@ C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\API.dll.config
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\EntityFramework.xml
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\EntityFramework.SqlServer.xml
+C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\EPPlus.xml
+C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\itextsharp.xml
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\System.Net.Http.Formatting.xml
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\System.Web.Helpers.xml
 C:\Users\Andreas\Documents\Visual Studio 2017\Projects\BelajarAspAPI\AspAPI\bin\System.Web.Mvc.xml

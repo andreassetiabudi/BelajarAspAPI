@@ -1,12 +1,15 @@
 ﻿using API.Models;
 using API.ViewModel;
+using AspAPI.Report;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -19,7 +22,6 @@ namespace AspAPI.Controllers
         {
             BaseAddress = new Uri("https://localhost:44375/API/")
         };
-
         // GET: Department
         public ActionResult Index()
         {
@@ -85,6 +87,108 @@ namespace AspAPI.Controllers
         {
             var result = client.DeleteAsync("Department/" +id).Result;
             return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public ActionResult ExportToPDF(Department department)
+        {
+            DepartmentReport deptreport = new DepartmentReport();
+            byte[] abytes = deptreport.PrepareReport(GetDepartment());
+            return File(abytes, "application/pdf");
+        }
+
+        public List<Department> GetDepartment()
+        {
+            IEnumerable<Department> datadept = null;
+            var responseTask = client.GetAsync("Department");
+            responseTask.Wait();
+            var result = responseTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<Department>>();
+                readTask.Wait();
+                datadept = readTask.Result;
+            }
+            else
+            {
+                datadept = Enumerable.Empty<Department>();
+                ModelState.AddModelError(string.Empty, "Sorry Server Error, Try Again");
+            }
+
+            return datadept.ToList();
+        }
+
+        public ActionResult ExportToExcel()
+        {
+            var comlumHeaders = new string[]
+            {
+                "Id",
+                "Name Department",
+                "Tanggal Dibuat",
+                "Tanggal Diubah"
+            };
+
+            byte[] result;
+
+            using (var package = new ExcelPackage())
+            {
+                // add a new worksheet to the empty workbook
+
+                var worksheet = package.Workbook.Worksheets.Add("Department List"); //Worksheet name
+                using (var cells = worksheet.Cells[1, 1, 1, 4]) //(1,1) (1,5)
+                {
+                    cells.Style.Font.Bold = true;
+                }
+
+                //First add the headers
+                for (var i = 0; i < comlumHeaders.Count(); i++)
+                {
+                    worksheet.Cells[1, i + 1].Value = comlumHeaders[i];
+                }
+
+                //Add values
+                var j = 2;
+                foreach (var dept in GetDepartment())
+                {
+                    worksheet.Cells["A" + j].Value = dept.Id;
+                    worksheet.Cells["B" + j].Value = dept.DepartmentName;
+                    worksheet.Cells["C" + j].Value = dept.CreateDate.ToString();
+                    worksheet.Cells["D" + j].Value = dept.UpdateDate.ToString();
+                    j++;
+                }
+                result = package.GetAsByteArray();
+            }
+
+            return File(result, "application/ms-excel", $"DepartmentList.xlsx");
+        }
+
+        public ActionResult ExportToCSV()
+        {
+            var comlumHeaders = new string[]
+            {
+                "Id",
+                "Name Department",
+                "Tanggal Dibuat",
+                "Tanggal Diubah"
+            };
+
+            var deptRecords = (from dept in GetDepartment()
+                               select new object[]
+                               {
+                                            dept.Id,
+                                            dept.DepartmentName,
+                                            dept.CreateDate.ToString(),
+                                            dept.UpdateDate.ToString()
+                               }).ToList();
+
+            // Build the file content
+            var deptcsv = new StringBuilder();
+            deptRecords.ForEach(line =>
+            {
+                deptcsv.AppendLine(string.Join(",", line));
+            });
+
+            byte[] buffer = Encoding.ASCII.GetBytes($"{string.Join(",", comlumHeaders)}\r\n{deptcsv.ToString()}");
+            return File(buffer, "text/csv", $"DepartmentList.csv");
         }
     }
 }

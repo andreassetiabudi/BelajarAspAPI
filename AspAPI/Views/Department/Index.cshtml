@@ -63,33 +63,47 @@
             </div>
         </div>
     </div>
-
-
-
-
+    <!-- Start Page Content -->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Table</h4>
-                    <h6 class="card-subtitle">Data table example</h6>
+                    <h4 class="card-title">Export To</h4>
+                    <a href="/Department/ExportToCSV" class="btn btn-default">CSV</a>
+                    <a href="/Department/ExportToExcel" class="btn btn-default">Excel</a>
+                    <a href="/Department/ExportToPDF" class="btn btn-default">PDF</a>
                     <div class="table-responsive m-t-40">
-                        <table id="Department" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Department Name</th>
-                                    <th>Create Date</th>
-                                    <th>Update Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="departmentbody" />
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Data Table</h4>
+                        <h6 class="card-subtitle">Data table Department</h6>
+                        <div class="table-responsive m-t-40">
+                            <table id="Department" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Department Name</th>
+                                        <th>Tanggal Ditambahkan</th>
+                                        <th>Update Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="departmentbody" />
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Content -->
+
     </div>
+<!-- End Container fluid  -->
     <!-- ============================================================== -->
     <!-- End PAge Content -->
     <!-- ============================================================== -->
@@ -147,6 +161,7 @@
             </div>
         </div>
     </div>
+
     <!-- ============================================================== -->
     <!-- End Right sidebar -->
     <!-- ============================================================== -->
